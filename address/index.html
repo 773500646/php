@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script type="text/javascript" src="jquery-1.8.3.min.js"></script>
+</head>
+<body>
+	<input type="text" name="" id="phone-num" autocomplete="on" />
+	<button id="serachBtn">查询</button>
+	<table>
+		<tr>
+			<td>手机号码1：</td>
+			<td id="tel"></td>
+		</tr>
+		<tr>
+			<td>运营商：</td>
+			<td id="yys"></td>
+		</tr>
+		<tr>
+			<td>数据提供商：</td>
+			<td id="datas"></td>
+		</tr>
+	</table>
+	<p></p>
+	<script type="text/javascript">
+		$('#serachBtn').click(function(){
+			var Value=$('#phone-num').val();
+			$.ajax({
+				url:'api.php',
+				async:true,
+				type:'post',
+				dataType:'json',
+				data:{
+					value:Value
+				},
+				success:function(data){
+					if(data.code==200){
+						$('#tel').html(data.telString);
+						$('#yys').html(data.carrier);
+						$('#datas').html(data.msg);
+						$('p').show().html(data.msg);
+						$('table').show();
+					}else{
+						$('table').hide();
+						$('p').show().html(data.msg);
+					}
+				}
+			})
+		})
+	</script>
+</body>
+</html>
