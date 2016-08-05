@@ -1,5 +1,6 @@
 <html>
 	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 		<title></title>
 	</head>
 	<body>
@@ -33,8 +34,11 @@
 				echo $row['id'].'-'.$row['loginname'].'-'.$row['password'].'<br />';
 			}
 		
+			$prev='<a href='.$_SERVER["PHP_SELF"].'?p='.($page-1).'>上一页</a>';
+			$next='<a href='.$_SERVER["PHP_SELF"].'?p='.($page+1).'>下一页</a>';
 			//显示数据+分页条
-			
+			echo $prev;
+			echo $next;
 		?>	
 	</body>
 </html>
